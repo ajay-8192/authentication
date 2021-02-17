@@ -9,7 +9,8 @@ export class Login extends React.Component {
         this.state = {
             redirect: '',
             name: '',
-            password: ''
+            password: '',
+            user_id: ''
         }
     }
 
@@ -30,8 +31,10 @@ export class Login extends React.Component {
             headers: {'Content-Type': 'application/json'},
             data: formdata
         }).then(response =>  {
+            this.setState({user_id: response.data.id})
             console.log(JSON.stringify(response.data));
             this.setState({redirect: true})
+            this.props.history.push('/dashboard/' + response.data.id + '')
         }).catch( err => {
             console.log(err.message);
             this.setState({redirect: false})
@@ -41,9 +44,9 @@ export class Login extends React.Component {
 
     render() {
 
-        if(this.state.redirect) {
-            return <Redirect to='/dashboard' />
-        }
+        // if(this.state.redirect) {
+        //     return <Redirect to='/dashboard' user_id={this.state.user_id} />
+        // }
 
         return (
             <div className="base-container" ref={ this.props.containerRef }>

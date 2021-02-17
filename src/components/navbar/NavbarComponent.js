@@ -41,7 +41,7 @@ class NavbarComponent extends React.Component {
             <li className="nav-item dropdown nav-list-profile">
               <a className="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Icon</a>
               <div className="dropdown-menu">
-                <a className="dropdown-item" href="#">Logout</a>
+                <a className="dropdown-item" href="#" >Logout</a>
               </div>
             </li>
           </ul>

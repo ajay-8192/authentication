@@ -7,6 +7,7 @@ export class Dashboard extends React.Component {
     constructor(props) {
         super(props)
         this.state = {teams: []}
+        // console.log(props.match.params.user_id);
     }
     // {"name": "team1"},{"name": "team2"},{"name": "team3"},{"name": "team3"},{"name": "team4"}
     componentDidMount() {
@@ -24,16 +25,15 @@ export class Dashboard extends React.Component {
 
     render() {
         const { teams } = this.state;
-
+        let url = "https://taskifywebapp.herokuapp.com/"
         const card = teams.map(team => 
-            <a key={team.name} href="https://www.google.com">
+            <a key={team.name} href = {url +"user/"+ this.props.match.params.user_id + "/team/" + team.id}>
                 <div className="card">
                     <div className="card-title">
                         <h5>{team.name}</h5>
                     </div>
                 </div>
             </a>
-            
         )
 
         return (
