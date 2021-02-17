@@ -27,6 +27,7 @@ export const Dashboard = (props) => {
     return (
         <div className="container">
             {/* <Nav /> */}
+            <h2>Teams</h2>
             <div className="content">
                 {card}
             </div>
