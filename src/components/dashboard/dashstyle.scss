@@ -1,23 +1,18 @@
 .container {
     width: 100%;
-    height: 100vh;
+    // height: 100vh;
     background-color: darkcyan;
-    color: floralwhite;
+    // color: floralwhite;
 
-    .content {
-        padding: 10%;
+    .cards {
         display: flex;
-        flex-direction: row;
+        flex-flow: row wrap;
         justify-content: center;
         align-items: center;
-    }
 
-    .card {
-        .card-title {
-            background-color: darkturquoise;
-            color: honeydew;
+        .card {
+            padding: 60px;
+            margin: 12px;
         }
-        background-color: darkgreen;
-        margin: 10%;
     }
 }

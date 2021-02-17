@@ -4,12 +4,11 @@
     width: 100%;
     background-color: darkcyan;
     text-align: center;
-    display: inline-grid;
+    display: grid;
 
     .container {
         width: 100%;
         display: flex;
-        // flex-wrap: wrap;
         flex-direction: row;
         align-items: center;
     
