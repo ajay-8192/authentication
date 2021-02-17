@@ -12,16 +12,13 @@ export class Register extends React.Component {
             name: '',
             password: '',
             cpassword: '',
-            phone: '',
-            code: ''
+            phone: ''
         }
-        // console.log(props.match.params);
+       
     }
 
     submit(e) {
-        // if (this.state.password === this.state.cpassword) {
-           
-            this.setState({passMatch: ''})
+        
             e.preventDefault();
             const { name, password, phone } = this.state;
             
@@ -46,16 +43,14 @@ export class Register extends React.Component {
                     console.log(response.statusCode);
                 }
             })
-                    this.setState({redirect: true})
-            
-        // }
-        // } else {
-        // this.setState({passMatch: <p><strong>Password Doesn't Match</strong></p>})
-        // }
+            this.setState({redirect: true})
     }
     passwordMatch(e) {
-        this.setState({password: e.target.value.toString()})
-        
+        if(e.target.value !== this.state.password) {
+            this.setState({passMatch: <p><strong>Password Doesn't Match</strong></p>})
+        } else {
+            this.setState({passMatch: <p style="color: green;"><strong>Password Matched</strong></p>})
+        }
     }
 
     render() {

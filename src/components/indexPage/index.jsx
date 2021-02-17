@@ -13,8 +13,8 @@ class HomePage extends Component {
             <div className="main-container">
                 <div className="container">
                     <div className="left-container">
-                        <h1>Demo helps teams work more collaboratively and get more done.</h1>
-                        <p>Demo’s boards, lists, and cards enable teams to organize and prioritize projects in a fun, flexible, and rewarding way.</p>
+                        <h1>Taskify helps teams work more collaboratively and get more done.</h1>
+                        <p>Taskify’s boards, lists, and cards enable teams to organize and prioritize projects in a fun, flexible, and rewarding way.</p>
                     </div>
                     <div className="right-container">
                         <img src={ loginSVG } alt="task-management-demo-image"/>

@@ -1,37 +1,85 @@
-import React, {useState} from 'react';
+import React from 'react';
 import axios from 'axios';
 import './dashstyle.scss';
+import NavbarComponent from '../navbar/NavbarComponent';
 
+export class Dashboard extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {teams: []}
+    }
+    // {"name": "team1"},{"name": "team2"},{"name": "team3"},{"name": "team3"},{"name": "team4"}
+    componentDidMount() {
+        axios({
+            method: 'GET',
+            url:'https://flask-jwt-pro.herokuapp.com/teams',
+            withCredentials: true,
+            headers: {'Content-Type': 'application/json'}
+        }).then(res => {
+            this.setState({teams:[...res.data]})
+            console.log(res.data);
 
-export const Dashboard = (props) => {
-    const [teams, setteams] = useState(["Team1", "Team2", "Team3","Team1", "Team2", "Team3","Team1", "Team2", "Team3"])
+          })
+    }
 
-    // axios({
-    //     method: 'GET',
-    //     url:'https://flask-jwt-pro.herokuapp.com/teams',
-    //     withCredentials: true,
-    //     headers: {'Content-Type': 'application/json'}
-    // }).then(res => {
-    //     setteams([...res.data])
-    //     // console.log(res.data);
-    // })
+    render() {
+        const { teams } = this.state;
 
-    const card = teams.map(team => 
-        <div key={team} className="card">
-            <div className="card-title">
-                <h5>{team}</h5>
-            </div>
-        </div>
-    )
-
-    return (
-        <div className="container">
-            {/* <Nav /> */}
-            <h2>Teams</h2>
-            <div className="cards">
-                {card}
-            </div>
+        const card = teams.map(team => 
+            <a key={team.name} href="https://www.google.com">
+                <div className="card">
+                    <div className="card-title">
+                        <h5>{team.name}</h5>
+                    </div>
+                </div>
+            </a>
             
-        </div>
-    );
+        )
+
+        return (
+            <div className="container">
+                <NavbarComponent />
+                <h2>Teams</h2>
+                <div className="cards">
+                    {card}
+                </div>
+                
+            </div>
+        );
+    }
 }
+
+
+
+// export const Dashboard = (props) => {
+//     const [teams, setteams] = useState(["Team1", "Team2", "Team3","Team1", "Team2", "Team3","Team1", "Team2", "Team3"])
+
+//     // axios({
+//     //     method: 'GET',
+//     //     url:'https://flask-jwt-pro.herokuapp.com/teams',
+//     //     withCredentials: true,
+//     //     headers: {'Content-Type': 'application/json'}
+//     // }).then(res => {
+//     //     setteams([...res.data])
+//     //     // console.log(res.data);
+//     // })
+
+//     const card = teams.map(team => 
+//         <div key={team} className="card">
+//             <div className="card-title">
+//                 <h5>{team}</h5>
+//             </div>
+//         </div>
+//     )
+
+//     return (
+//         <div className="container">
+//             {/* <Nav /> */}
+//             <h2>Teams</h2>
+//             <div className="cards">
+//                 {card}
+//             </div>
+            
+//         </div>
+//     );
+// }
