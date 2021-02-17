@@ -21,7 +21,7 @@ export class Login extends React.Component {
         formdata.append('name', name)
         formdata.append('password', password)
 
-        console.log({ name, password });
+        // console.log({ name, password });
         // , 'Cookie': 'access_token_cookie=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MTM0NDQ3NTksIm5iZiI6MTYxMzQ0NDc1OSwianRpIjoiNWFmZjRlYjYtNWY0YS00OGE2LWIxZTktOTZiYmY2ZmY2ZDcwIiwiZXhwIjoxNjEzNDQ1NjU5LCJpZGVudGl0eSI6NSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIn0.exNLE8imviA-ZuwnONiM6F4colS407bFSI3Kd7hY_Es'
 
         const url = 'https://flask-jwt-pro.herokuapp.com/login'
