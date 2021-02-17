@@ -1,7 +1,8 @@
 .container {
     width: 100%;
-    // height: 100vh;
-    // background-color: darkslategray;
+    height: 100vh;
+    background-color: darkslategray;
+    color: floralwhite;
 
     .content {
         padding: 10%;
@@ -14,6 +15,7 @@
     .card {
         .card-title {
             background-color: darkturquoise;
+            color: honeydew;
         }
         background-color: darkgreen;
         margin: 10%;
