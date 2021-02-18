@@ -76,6 +76,9 @@ export class Register extends React.Component {
     }
 
     passwordMatch(e) {
+        if (e.target.value === "") {
+            this.setState({passMatch: ''})
+        }
         if(e.target.value !== this.state.password) {
             this.setState({passMatch: <p><strong>Password Doesn't Match</strong></p>})
         } else {
