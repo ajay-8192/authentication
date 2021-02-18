@@ -9,7 +9,6 @@ export class Register extends React.Component {
         this.state = {
             strength:'',
             passMatch: '',
-            redirect: false,
             name: '',
             password: '',
             cpassword: '',
@@ -43,14 +42,10 @@ export class Register extends React.Component {
                 // headers: {'Content-Type': 'application/json'},
                 data: formdata
             }).then(response => {
-                if (response.statusCode === 200){
-                    // this.setState({redirect: true})
-                    console.log(response.statusCode);
-                }
+                this.props.history.push('/login')
             }).catch(err => {
                 alert("username already exists")
             })
-            this.setState({redirect: true})
     }
 
     passwordChanged(e) {
@@ -97,10 +92,6 @@ export class Register extends React.Component {
     }
 
     render() {
-
-        if(this.state.redirect) {
-            return <Redirect to='/login' />
-        }
 
         return (
             <div className="base-container" ref={ this.props.containerRef }>

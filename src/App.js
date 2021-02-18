@@ -11,11 +11,9 @@ function App() {
     	<div className="App">
 			<BrowserRouter>
 				<Route exact path='/' component={HomePage} />
-				<Route path="/login" component={() => <Login isUserLogin={setIsUserLogin}/>}/>
-				<Route>
-					{isUserLogin ? <Redirect to='/dashboard/:user_id' /> : <Redirect to='/login' />}
-				</Route>
-				<Route path='/register/:invite_id' component={Register} />
+				<Route exact path="/login" component={() => <Login isUserLogin={setIsUserLogin}/>}/>
+				<Route exact path='/register/:invite_id' component={Register} />
+				<Route exact path='/dashboard/:user_id' render={() => isUserLogin ? <Dashboard /> : <Redirect to='/login' />} />
 				
 			</BrowserRouter>
     	</div>
