@@ -7,11 +7,11 @@ export class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            redirect: '',
             name: '',
             password: '',
             user_id: ''
         }
+        console.log(props);
     }
 
     submit(e) {
@@ -33,12 +33,13 @@ export class Login extends React.Component {
         }).then(response =>  {
             this.setState({user_id: response.data.id})
             console.log(JSON.stringify(response.data));
-            this.setState({redirect: true});
-            this.props.setIsUserLogin(true);
+            // this.setState({redirect: true});
+            
+            // this.props.setIsUserLogin(true);
             this.props.history.push('/dashboard/' + response.data.id + '')
         }).catch( err => {
             console.log(err.message);
-            this.setState({redirect: false})
+            // this.setState({redirect: false})
             alert("Incorrect username/password");
         })
     }

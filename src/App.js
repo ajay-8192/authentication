@@ -6,14 +6,14 @@ import { Dashboard } from './components/dashboard/dashboard';
 
 function App() {
 
-	const [isUserLogin, setIsUserLogin] = useState(false)
+	// const [isUserLogin, setIsUserLogin] = useState(false)
 	return (
     	<div className="App">
 			<BrowserRouter>
 				<Route exact path='/' component={HomePage} />
-				<Route exact path="/login" component={() => <Login isUserLogin={setIsUserLogin}/>}/>
+				<Route exact path="/login" component={Login}/>
 				<Route exact path='/register/:invite_id' component={Register} />
-				<Route exact path='/dashboard/:user_id' render={() => isUserLogin ? <Dashboard /> : <Redirect to='/login' />} />
+				<Route exact path='/dashboard/:user_id' component={Dashboard} />
 				
 			</BrowserRouter>
     	</div>
