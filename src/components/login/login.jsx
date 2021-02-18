@@ -33,7 +33,8 @@ export class Login extends React.Component {
         }).then(response =>  {
             this.setState({user_id: response.data.id})
             console.log(JSON.stringify(response.data));
-            this.setState({redirect: true})
+            this.setState({redirect: true});
+            this.props.setIsUserLogin(true);
             this.props.history.push('/dashboard/' + response.data.id + '')
         }).catch( err => {
             console.log(err.message);

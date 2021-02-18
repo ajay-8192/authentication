@@ -20,7 +20,7 @@ export class Register extends React.Component {
 
     submit(e) {
             if (this.state.password === "") {
-                alert("Password is not strong enough!!");
+                alert("Password is not strong enough!! (8 character min with lowercase/uppercase (min 4), numbers(min 4))");
                 return false;
             }
         
@@ -72,10 +72,10 @@ export class Register extends React.Component {
             this.setState({password: <p style={{color: "red"}}>Weak!</p>})
             this.setState({strength: <p>More Characters</p>})
         } else if (strongRegex.test(e.target.value)) {
-            this.setState({strength: <p style={{color: "green"}}>Very Strong!</p>})
+            this.setState({strength: <p style={{color: "green"}}><strong>Very Strong!</strong></p>})
             this.setState({password: e.target.value})
         } else if (mediumRegex.test(e.target.value)) {
-            this.setState({strength: <p style={{color: "orange"}}>Strong!</p>})
+            this.setState({strength: <p style={{color: "orange"}}><strong>Strong!</strong></p>})
             this.setState({password: e.target.value})
         } else {
             this.setState({password: ''})
