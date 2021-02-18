@@ -57,6 +57,14 @@ export class Register extends React.Component {
         var strongRegex = new RegExp("^(?=.{10,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$", "g");
         var mediumRegex = new RegExp("^(?=.{8,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g");
         var enoughRegex = new RegExp("(?=.{6,}).*", "g");
+        if (this.state.cpassword === "") {
+            this.setState({passMatch: ''})
+            // return false
+        }else if(this.state.cpassword !== e.target.value) {
+            this.setState({passMatch: <p><strong>Password Doesn't Match</strong></p>})
+        } else {
+            this.setState({passMatch: <p style={{color: "green"}}><strong>Password Matched</strong></p>})
+        }
         if (e.target.value.length == 0) {
             this.setState({password: ''})
             this.setState({strength: <p>Type Password</p>})
@@ -76,6 +84,7 @@ export class Register extends React.Component {
     }
 
     passwordMatch(e) {
+        this.setState({cpassword: e.target.value})
         if (e.target.value === "") {
             this.setState({passMatch: ''})
             return false
