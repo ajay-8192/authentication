@@ -60,7 +60,7 @@ export class Register extends React.Component {
         } else {
             this.setState({passMatch: <p style={{color: "green"}}><strong>Password Matched</strong></p>})
         }
-        if (e.target.value.length == 0) {
+        if (e.target.value.length === 0) {
             this.setState({password: ''})
             this.setState({strength: <p>Type Password</p>})
         } else if (false == enoughRegex.test(e.target.value)) {
