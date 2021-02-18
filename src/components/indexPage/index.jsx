@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../indexPage/styles.scss';
+import '../indexPage/styles.css';
 import loginSVG from '../../login.svg';
 import { Link } from 'react-router-dom';
 

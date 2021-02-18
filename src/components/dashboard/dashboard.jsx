@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import './dashstyle.scss';
+import './dashstyle.css';
 import NavbarComponent from '../navbar/NavbarComponent';
 
 export class Dashboard extends React.Component {
@@ -30,7 +30,7 @@ export class Dashboard extends React.Component {
         let url = "https://taskifywebapp.herokuapp.com/"
         const card = teams.map(team => 
             <a key={team.name} href = {url +"user/"+ this.props.match.params.user_id + "/team/" + team.id}>
-                <div className="card">
+                <div className="card card-item">
                     <div className="card-title">
                         <h5>{team.name}</h5>
                     </div>
@@ -39,14 +39,17 @@ export class Dashboard extends React.Component {
         )
 
         return (
-            <div className="container">
+            <div>
                 <NavbarComponent />
-                <h2 style={{color: "whitesmoke"}}>Teams</h2>
-                <div className="cards">
-                    {card}
+                <div className="dashboard">
+                    <h2 style={{color: "whitesmoke"}}>Teams</h2>
+                    <div className="container cardList">
+                        {card}
+                    </div>
                 </div>
                 
             </div>
+            
         );
     }
 }
