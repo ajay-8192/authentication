@@ -39,7 +39,7 @@ export class Dashboard extends React.Component {
         return (
             <div className="container">
                 <NavbarComponent />
-                <h2>Teams</h2>
+                <h2 style={{color: "whitesmoke"}}>Teams</h2>
                 <div className="cards">
                     {card}
                 </div>

@@ -7,6 +7,7 @@ export class Register extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            strength:'',
             passMatch: '',
             redirect: false,
             name: '',
@@ -18,6 +19,10 @@ export class Register extends React.Component {
     }
 
     submit(e) {
+            if (this.state.password === "") {
+                alert("Password is not strong enough!!");
+                return false;
+            }
         
             e.preventDefault();
             const { name, password, phone } = this.state;
@@ -42,14 +47,39 @@ export class Register extends React.Component {
                     // this.setState({redirect: true})
                     console.log(response.statusCode);
                 }
+            }).catch(err => {
+                alert("username already exists")
             })
             this.setState({redirect: true})
     }
+
+    passwordChanged(e) {
+        var strongRegex = new RegExp("^(?=.{10,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$", "g");
+        var mediumRegex = new RegExp("^(?=.{8,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g");
+        var enoughRegex = new RegExp("(?=.{6,}).*", "g");
+        if (e.target.value.length == 0) {
+            this.setState({password: ''})
+            this.setState({strength: <p>Type Password</p>})
+        } else if (false == enoughRegex.test(e.target.value)) {
+            this.setState({password: <p style={{color: "red"}}>Weak!</p>})
+            this.setState({strength: <p>More Characters</p>})
+        } else if (strongRegex.test(e.target.value)) {
+            this.setState({strength: <p style={{color: "green"}}>Very Strong!</p>})
+            this.setState({password: e.target.value})
+        } else if (mediumRegex.test(e.target.value)) {
+            this.setState({strength: <p style={{color: "orange"}}>Strong!</p>})
+            this.setState({password: e.target.value})
+        } else {
+            this.setState({password: ''})
+            this.setState({strength: <p style={{color:"red"}}>Medium!</p>})
+        }
+    }
+
     passwordMatch(e) {
         if(e.target.value !== this.state.password) {
             this.setState({passMatch: <p><strong>Password Doesn't Match</strong></p>})
         } else {
-            this.setState({passMatch: <p style="color: green;"><strong>Password Matched</strong></p>})
+            this.setState({passMatch: <p style={{color: "green"}}><strong>Password Matched</strong></p>})
         }
     }
 
@@ -60,7 +90,7 @@ export class Register extends React.Component {
         }
 
         return (
-            <div className="base-container needs-validation" ref={ this.props.containerRef }>
+            <div className="base-container" ref={ this.props.containerRef }>
                 <div className="header">Register</div>
                 <div className="content shadow p-3 bg-body rounded">
                     <div className="image">
@@ -73,8 +103,8 @@ export class Register extends React.Component {
                         </div>
                         <div className="form-group">
                             <label htmlFor="password">Password</label>
-                            <input type="password" placeholder="Password" onChange={e => this.setState({password: e.target.value.toString()})} required/>
-                            {/* <p>{this.state.passStrength}</p> */}
+                            <input type="password" placeholder="Password" onChange={e => this.passwordChanged(e)} required/>
+                            {this.state.strength}
                         </div>
                         <div className="form-group">
                             <label htmlFor="cpassword">Confirm Password</label>
