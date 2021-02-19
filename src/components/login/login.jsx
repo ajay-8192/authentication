@@ -41,21 +41,22 @@ export class Login extends React.Component {
         }).catch( err => {
             // console.log(err.message);
             // this.setState({redirect: false})
-            this.setState({error: <p>Incorrect username/password</p>});
+            this.setState({error: 
+                <div class="alert alert-danger alert-dismissible fade show">
+                    <button type="button" className="close" data-dismiss="alert">&times;</button>
+                    <>Incorrect Username/Password</>
+                </div>
+            });
         })
     }
 
     render() {
 
-        // if(this.state.redirect) {
-        //     return <Redirect to='/dashboard' user_id={this.state.user_id} />
-        // }
-
         return (
             <div className="base-container" ref={ this.props.containerRef }>
                 <div className="header">Login</div>
                 <div className="content">
-                    <div className="text-danger">{this.state.error}</div>
+                    {this.state.error}
                     <div className="image">
                         <img src={loginSVG} alt=""/>
                     </div>

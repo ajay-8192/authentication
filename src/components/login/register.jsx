@@ -11,7 +11,8 @@ export class Register extends React.Component {
             name: '',
             password: '',
             cpassword: '',
-            phone: ''
+            phone: '',
+            error: ''
         }
     }
 
@@ -42,7 +43,12 @@ export class Register extends React.Component {
             }).then(response => {
                 this.props.history.push('/login')
             }).catch(err => {
-                alert("username already exists")
+                this.setState({error: 
+                    <div class="alert alert-danger alert-dismissible fade show">
+                        <button type="button" className="close" data-dismiss="alert">&times;</button>
+                        <>UserName already exists</>
+                    </div>
+                });
             })
     }
 
