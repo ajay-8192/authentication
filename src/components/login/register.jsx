@@ -1,7 +1,6 @@
 import React from 'react';
 import loginSVG from '../../login.svg';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
 
 export class Register extends React.Component {
     constructor(props) {
@@ -14,7 +13,6 @@ export class Register extends React.Component {
             cpassword: '',
             phone: ''
         }
-       
     }
 
     submit(e) {

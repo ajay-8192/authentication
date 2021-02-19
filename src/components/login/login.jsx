@@ -1,7 +1,7 @@
 import React from 'react';
 import loginSVG from '../../login.svg';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 
 export class Login extends React.Component {
     constructor(props) {
@@ -9,9 +9,10 @@ export class Login extends React.Component {
         this.state = {
             name: '',
             password: '',
-            user_id: ''
+            user_id: '',
+            error: ''
         }
-        console.log(props);
+        // console.log(props);
     }
 
     submit(e) {
@@ -32,15 +33,15 @@ export class Login extends React.Component {
             data: formdata
         }).then(response =>  {
             this.setState({user_id: response.data.id})
-            console.log(JSON.stringify(response.data));
+            // console.log(JSON.stringify(response.data));
             // this.setState({redirect: true});
             
             // this.props.setIsUserLogin(true);
             this.props.history.push('/dashboard/' + response.data.id + '')
         }).catch( err => {
-            console.log(err.message);
+            // console.log(err.message);
             // this.setState({redirect: false})
-            alert("Incorrect username/password");
+            this.setState({error: <p>Incorrect username/password</p>});
         })
     }
 
@@ -54,6 +55,7 @@ export class Login extends React.Component {
             <div className="base-container" ref={ this.props.containerRef }>
                 <div className="header">Login</div>
                 <div className="content">
+                    <div className="text-danger">{this.state.error}</div>
                     <div className="image">
                         <img src={loginSVG} alt=""/>
                     </div>
